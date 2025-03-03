@@ -1,0 +1,152 @@
+/* Global Styles */
+  body {
+    background-color: #f0f2f5;
+      color: #1a1a1a;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+/* Header Styles */
+  .title-panel {
+    background-color: #2c3e50;
+      color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+/* Sidebar Styles */
+  .well {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+  }
+
+/* Input Styles */
+  .form-control {
+    border-radius: 8px;
+    border: 1px solid #e1e4e8;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+  }
+
+.form-control:focus {
+  border-color: #2c3e50;
+    box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.2);
+}
+
+/* Button Styles */
+  .btn-primary {
+    background-color: #2c3e50;
+      border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+  }
+
+.btn-primary:hover {
+  background-color: #34495e;
+    transform: translateY(-1px);
+}
+
+/* Move Sequence Box */
+  #move_sequence {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+padding: 15px;
+font-family: 'Courier New', monospace;
+margin-top: 10px;
+border: 1px solid #e1e4e8;
+}
+
+/* Table Styles */
+  .dataTables_wrapper {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+.table thead th {
+  background-color: #2c3e50;
+    color: white;
+  border-bottom: none;
+  padding: 12px 8px;
+}
+
+.table tbody td {
+  padding: 12px 8px;
+  border-top: 1px solid #e1e4e8;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+/* Column width styles */
+  .moves-column {
+    width: 10px !important;
+    max-width: 10px !important;
+    text-align: center !important;
+  }
+
+.games-column {
+  width: 10px !important;
+  max-width: 10px !important;
+  text-align: center !important;
+}
+
+.results-column {
+  width: 100px !important;
+  min-width: 100px !important;
+}
+
+.evaluation-column {
+  width: 80px !important;
+  max-width: 80px !important;
+  text-align: center !important;
+}
+
+.eval-button {
+  padding: 4px 8px;
+  background-color: #2c3e50;
+    color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.eval-button:hover {
+  background-color: #34495e;
+}
+
+.eval-value {
+  font-weight: bold;
+}
+
+.eval-positive {
+  color: #27ae60;
+}
+
+.eval-negative {
+  color: #e74c3c;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #2c3e50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
