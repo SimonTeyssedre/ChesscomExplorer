@@ -34,6 +34,13 @@ server <- function(input, output, session) {
       filter(as.Date(end_time) >= input$date_filter[1] & 
                as.Date(end_time) <= input$date_filter[2])
     
+    # Filtrer par type de partie
+    if (!is.null(input$game_type_filter) && length(input$game_type_filter) > 0) {
+      game_types <- tolower(input$game_type_filter)
+      df <- df %>% filter(time_class %in% game_types)
+    }
+    
+    # Filtrer par couleur
     if (input$color_filter == "White") {
       df <- df %>% filter(white_username == input$username)
       df$Rating <- df$black_rating
@@ -231,5 +238,32 @@ server <- function(input, output, session) {
       rownames = FALSE,
       colnames = c("Move", "Games", "Rating", "Results", "Eval")
     )
+  })
+  
+  # Back Bouton
+  observeEvent(input$back, {
+    current_sequence <- move_sequence()
+    if (current_sequence != "") {
+      # Séparer la séquence en mouvements individuels
+      moves <- unlist(strsplit(current_sequence, " "))
+      
+      if (length(moves) > 0) {
+        # Enlever le dernier mouvement
+        new_sequence <- paste(moves[-length(moves)], collapse = " ")
+        
+        # Réinitialiser le jeu d'échecs et appliquer les mouvements restants
+        game <- Chess$new()
+        if (new_sequence != "") {
+          remaining_moves <- unlist(strsplit(new_sequence, " "))
+          for (move in remaining_moves) {
+            game$move(move)
+          }
+        }
+        
+        # Mettre à jour la séquence et le jeu d'échecs
+        move_sequence(new_sequence)
+        chess_game(game)
+      }
+    }
   })
 }

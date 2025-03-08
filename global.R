@@ -2,6 +2,7 @@ library(httr)
 library(jsonlite)
 library(DT)
 library(shinycssloaders)
+library(shinyWidgets)
 library(rchess)
 library(dplyr)
 library(shinyjs)  # Add this for enabling/disabling buttons
@@ -57,7 +58,7 @@ get_lichess_eval <- function(fen) {
 }
 
 # Function to split moves into 30 columns
-split_moves <- function(moves, num_moves = 30) {
+split_moves <- function(moves, num_moves = 50) {
   mymoves <- rep(NA, num_moves)
   mymoves[1:min(num_moves, length(moves))] <- moves[1:min(num_moves, length(moves))]
   return(mymoves)
@@ -78,7 +79,7 @@ get_user_game_data <- function(username) {
         mat_moves <- do.call(rbind, lapply(games_data$pgn, function(pgn) {
           split_moves(extract_moves_from_pgn(pgn))
         }))
-        colnames(mat_moves) <- paste0("Moves_", 1:30)
+        colnames(mat_moves) <- paste0("Moves_", 1:50)
         
         games_df <- data.frame(
           url = games_data$url,
@@ -97,8 +98,8 @@ get_user_game_data <- function(username) {
         cbind(games_df, mat_moves)
       }))
       
-      cond <- which(games_df$time_class == "blitz")
-      if (length(cond) > 0) games_df <- games_df[cond, , drop = FALSE]
+      #cond <- which(games_df$time_class == "blitz")
+      #if (length(cond) > 0) games_df <- games_df[cond, , drop = FALSE]
       
       games_df <- games_df %>%
         mutate(user_outcome = case_when(

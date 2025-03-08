@@ -23,13 +23,27 @@ ui <- fluidPage(
                        end = Sys.Date()),
         selectInput("color_filter", "Color", 
                     choices = c("White", "Black")),
+        prettyCheckboxGroup(
+          inputId = "game_type_filter",
+          label = "Game Type",
+          choices = c("Blitz", "Bullet", "Rapid"),
+          selected = "Blitz",
+          status = "primary",
+          animation = "pulse",
+          icon = icon("chess"),
+          inline = TRUE
+        ),
         hr(),
         h4("Current Move Sequence", style = "color: #2c3e50;"),
         verbatimTextOutput("move_sequence"),
         actionButton("reset", "Reset Moves", 
                      icon = icon("undo"), 
                      class = "btn-primary btn-block",
-                     style = "margin-top: 15px;")
+                     style = "margin-top: 15px;"),
+        actionButton("back", "Back One Move",  # Nouveau bouton Back
+                     icon = icon("arrow-left"), 
+                     class = "btn-info btn-block",
+                     style = "margin-top: 10px;")
       )
     ),
     
